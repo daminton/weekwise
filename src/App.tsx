@@ -126,7 +126,7 @@ function App() {
       await reader.decodeFromVideoDevice(preferred?.deviceId, videoRef.current, (result) => {
         if (result) {
           const code = result.getText()
-          reader.reset()
+          readerRef.current = null
           setLookupCode(code)
           searchBarcode(code)
         }
@@ -136,7 +136,7 @@ function App() {
     }
   }
   function stopScanner() {
-    readerRef.current?.reset()
+    readerRef.current = null
     setShowScanner(false)
   }
   async function createManualFood() {
